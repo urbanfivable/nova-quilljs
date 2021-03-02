@@ -64,4 +64,4 @@ export class VideoBlot extends BlockEmbed {
 }
 VideoBlot.blotName = 'video';
 VideoBlot.className = 'ql-video';
-VideoBlot.tagName = 'IFRAME';
+VideoBlot.tagName = 'DIV';
