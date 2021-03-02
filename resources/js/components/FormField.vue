@@ -26,15 +26,17 @@ import { ImageExtend, QuillWatch } from "quill-image-extend-module";
 import { VideoBlot } from "../../quilljs/VideoBlot";
 import Tooltip from "quill/ui/tooltip";
 import { CustomImageSpec } from "../../quilljs/CustomImageSpec";
+import EmbedResponsive from "../blots/EmbedResponsive";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
+Quill.register(EmbedResponsive);
 Quill.register({
   "modules/ImageExtend": ImageExtend,
   "modules/blotFormatter": BlotFormatter,
   "ui/tooltip": Tooltip,
-  "formats/video": VideoBlot,
+  "formats/video": VideoBlot
 });
 
 export default {
