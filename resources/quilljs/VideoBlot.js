@@ -10,19 +10,25 @@ const BlockEmbed = Quill.import('blots/block/embed')
 
 export class VideoBlot extends BlockEmbed {
     static create(url) {
-        let node = super.create();
+        let node = super.create(url);
+        node.classList.add("embed-responsive-16by9");
+
+        let child = document.createElement("iframe");
+        child.classList.add("ql-video");
         // const vidWrapper = document.createElement('div');
         const regex = /facebook\.com\/[a-zA-Z0-9\.]+\/videos\/(?:[a-z0-9\.]+\/)?([0-9]+)\/?(.*)/gm
         if (regex.test(this.sanitize(url))) {
             let facebook_prefix = 'https://www.facebook.com/plugins/video.php?href='
-            node.setAttribute('src', facebook_prefix + encodeURIComponent(this.sanitize(url)))
+            child.setAttribute('src', facebook_prefix + encodeURIComponent(this.sanitize(url)))
         } else {
-            node.setAttribute('src', this.sanitize(url));
+            child.setAttribute('src', this.sanitize(url));
         }
-        node.setAttribute('frameborder', '0');
-        node.setAttribute('allowfullscreen', true);
+        child.setAttribute('frameborder', '0');
+        child.setAttribute('allowfullscreen', true);
         // vidWrapper.className = "img video embed-responsive embed-responsive-16by9"
         // vidWrapper.appendChild(node);
+        node.appendChild(child);
+
         return node;
     }
 
@@ -58,5 +64,5 @@ export class VideoBlot extends BlockEmbed {
     }
 }
 VideoBlot.blotName = 'video';
-VideoBlot.className = 'ql-video';
-VideoBlot.tagName = 'IFRAME';
+VideoBlot.className = 'ql-video-wrapper';
+VideoBlot.tagName = 'DIV';

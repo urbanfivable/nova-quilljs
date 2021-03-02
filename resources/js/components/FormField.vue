@@ -36,7 +36,7 @@ Quill.register({
   "modules/ImageExtend": ImageExtend,
   "modules/blotFormatter": BlotFormatter,
   "ui/tooltip": Tooltip,
-  "formats/video": VideoBlot,
+  "formats/video": VideoBlot
 });
 
 let icons = Quill.import("ui/icons");
