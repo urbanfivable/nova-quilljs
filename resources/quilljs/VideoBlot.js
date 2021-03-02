@@ -14,6 +14,7 @@ export class VideoBlot extends BlockEmbed {
         node.classList.add("embed-responsive-16by9");
 
         let child = document.createElement("iframe");
+        child.classList.add("ql-video");
         // const vidWrapper = document.createElement('div');
         const regex = /facebook\.com\/[a-zA-Z0-9\.]+\/videos\/(?:[a-z0-9\.]+\/)?([0-9]+)\/?(.*)/gm
         if (regex.test(this.sanitize(url))) {
@@ -63,5 +64,5 @@ export class VideoBlot extends BlockEmbed {
     }
 }
 VideoBlot.blotName = 'video';
-VideoBlot.className = 'ql-video';
+VideoBlot.className = 'ql-video-wrapper';
 VideoBlot.tagName = 'DIV';
