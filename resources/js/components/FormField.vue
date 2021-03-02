@@ -26,16 +26,25 @@ import { ImageExtend, QuillWatch } from "quill-image-extend-module";
 import { VideoBlot } from "../../quilljs/VideoBlot";
 import Tooltip from "quill/ui/tooltip";
 import { CustomImageSpec } from "../../quilljs/CustomImageSpec";
+import LMS from "../../quilljs/formats/LMS";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
+Quill.register({ 'formats/lms': LMS }, true);
 Quill.register({
   "modules/ImageExtend": ImageExtend,
   "modules/blotFormatter": BlotFormatter,
   "ui/tooltip": Tooltip,
   "formats/video": VideoBlot,
 });
+
+let icons = Quill.import("ui/icons");
+icons.lms = {
+  label: "L",
+  "verse-title": "VTi",
+  "verse-text": "VTe"
+};
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
