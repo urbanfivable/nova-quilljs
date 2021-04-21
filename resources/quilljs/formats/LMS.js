@@ -11,7 +11,10 @@ class LMS extends Block {
   }
 
   static formats(domNode) {
-    if (domNode.getAttribute("class").indexOf("lms-") > -1) {
+    if (
+      domNode.getAttribute("class") &&
+      domNode.getAttribute("class").indexOf("lms-") > -1
+    ) {
       return domNode.getAttribute("class").substr(4);
     } else {
       return super.formats(domNode);
