@@ -3,6 +3,7 @@
 namespace Ek0519\Quilljs\Http\Controllers;
 
 
+use Ek0519\Quilljs\Quilljs;
 use Illuminate\Routing\Controller;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -21,7 +22,11 @@ class UploadController extends Controller
         if (count($novaDependencies) > 0) {
             foreach ($novaDependencies as $dependency) {
                 foreach ($dependency->meta['fields'] as $dependencyField) {
-                    if (isset($dependencyField->attribute) && $dependencyField->attribute == $request->field) {
+                    if (
+                        isset($dependencyField->attribute) &&
+                        $dependencyField->attribute == $request->field &&
+                        $dependencyField instanceof Quilljs
+                    ) {
                         $field = $dependencyField;
                     }
                 }
