@@ -16,8 +16,6 @@ class UploadController extends Controller
      */
     public function store(NovaRequest $request)
     {
-        var_dump($request->newResource());
-        dd($request->newResource()->availableFields($request));
         $field = $request->newResource()
                         ->availableFields($request)
                         ->findFieldByAttribute($request->field, function () {
