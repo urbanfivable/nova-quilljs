@@ -21,7 +21,7 @@ class UploadController extends Controller
         if (count($novaDependencies) > 0) {
             foreach ($novaDependencies as $dependency) {
                 foreach ($dependency->meta['fields'] as $dependencyField) {
-                    if ($dependencyField instanceof Downloadable && isset($dependencyField->attribute) && $dependencyField->attribute == $request->field) {
+                    if (isset($dependencyField->attribute) && $dependencyField->attribute == $request->field) {
                         $field = $dependencyField;
                     }
                 }
