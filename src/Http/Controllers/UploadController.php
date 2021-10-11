@@ -16,11 +16,29 @@ class UploadController extends Controller
      */
     public function store(NovaRequest $request)
     {
-        $field = $request->newResource()
-                        ->availableFields($request)
-                        ->findFieldByAttribute($request->field, function () {
-                            abort(404);
-                        });
+        $novaDependencies = $request->newResource()->availableFields()->whereInstanceOf(Epartment\NovaDependencyContainer\NovaDependencyContainer::class);
+
+        if (count($novaDependencies) > 0) {
+            foreach ($novaDependencies as $dependency) {
+                foreach ($dependency->meta['fields'] as $dependencyField) {
+                    if ($dependencyField instanceof Downloadable && isset($dependencyField->attribute) && $dependencyField->attribute == $request->field) {
+                        $field = $dependencyField;
+                    }
+                }
+            }
+        } else {
+            $field = $request->newResource()
+                             ->availableFields($request)
+                             ->findFieldByAttribute($request->field, function () {
+                                 abort(404);
+                             });
+        }
+
+        if (! isset($field)) {
+            abort(404);
+        }
+
+
         return response()->json(['url' => call_user_func(
             $field->attachCallback, $request
         ),'all' => $request]);
