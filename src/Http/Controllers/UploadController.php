@@ -18,7 +18,7 @@ class UploadController extends Controller
     {
         dd($request->newResource()->availableFields($request));
 
-        $novaDependencies = $request->newResource()->availableFields($request)->whereInstanceOf(Epartment\NovaDependencyContainer\NovaDependencyContainer::class);
+        $novaDependencies = $request->newResource()->availableFields($request)->whereInstanceOf(\Epartment\NovaDependencyContainer\NovaDependencyContainer::class);
 
         if (count($novaDependencies) > 0) {
             dd($novaDependencies);
