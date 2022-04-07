@@ -20,7 +20,6 @@ class UploadController extends Controller
         $novaDependencies = $request->newResource()->availableFields($request)->whereInstanceOf(\Epartment\NovaDependencyContainer\NovaDependencyContainer::class);
 
         if (count($novaDependencies) > 0) {
-            info("some nova dependencies");
             foreach ($novaDependencies as $dependency) {
                 foreach ($dependency->meta['fields'] as $dependencyField) {
                     if (
@@ -32,8 +31,9 @@ class UploadController extends Controller
                     }
                 }
             }
-        } else {
-            info("No nova dependencies");
+        }
+
+        if (! isset($field)) {
             $field = $request->newResource()
                              ->availableFields($request)
                              ->findFieldByAttribute($request->field, function () {
