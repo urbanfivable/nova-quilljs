@@ -22,7 +22,6 @@ class Quilljs extends Trix
         $this->tooltip();
         $this->height();
         $this->paddingBottom();
-        $this->fullWidth();
         $this->maxFileSize(2);
         $this->config();
     }
@@ -105,11 +104,6 @@ class Quilljs extends Trix
     public function paddingBottom(int $value=0)
     {
         return $this->withMeta(['paddingBottom' => $value]);
-    }
-
-    public function fullWidth(bool $value=true)
-    {
-        return $this->withMeta(['stacked' => $value]);
     }
 
     public function maxFileSize(int $value = 2)
