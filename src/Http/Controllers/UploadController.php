@@ -17,7 +17,7 @@ class UploadController extends Controller
      */
     public function store(NovaRequest $request)
     {
-        $novaDependencies = $request->newResource()->availableFields($request)->whereInstanceOf(\Epartment\NovaDependencyContainer\NovaDependencyContainer::class);
+        $novaDependencies = $request->newResource()->availableFields($request)->whereInstanceOf(\Alexwenzel\DependencyContainer\DependencyContainer::class);
 
         if (count($novaDependencies) > 0) {
             foreach ($novaDependencies as $dependency) {
