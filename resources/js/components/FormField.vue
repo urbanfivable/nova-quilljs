@@ -5,7 +5,6 @@
     >
         <template #field>
             <quill-editor
-                class="quill-editor"
                 :style="css"
                 v-model:value="value"
                 ref="myQuillEditor"
