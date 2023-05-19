@@ -4,7 +4,7 @@ namespace Ek0519\Quilljs;
 
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Trix\PendingAttachment;
+use Laravel\Nova\Fields\Attachments\PendingAttachment;
 
 class Quilljs extends Trix
 {
